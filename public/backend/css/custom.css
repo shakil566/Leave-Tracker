@@ -1,0 +1,180 @@
+/* basic-css */
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+.margin-bottom-10 {
+    margin-top: 10px;
+}
+
+.layout-navbar-fixed.layout-fixed .wrapper .sidebar {
+    margin-top: 0px !important;
+}
+
+img.img-circle.user-icon {
+    margin-top: -8px;
+    margin-right: 10px;
+    height: 40px;
+    display: inline-block;
+    width: 40px;
+}
+
+.nav-username {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.admin-nav li.nav-item {
+    margin-left: 20px;
+    font-size: 15px;
+}
+
+.nav-item .nav .nav-item.act a {
+    background: #3c5a7a;
+}
+
+.nav-item.parent.act a.parent-link {
+    background: #3c5a7a;
+}
+
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active,
+.sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+    background-color: #164a4a !important;
+}
+
+.page-item.active .page-link {
+    background-color: #343a40 !important;
+    border-color: #343a40 !important;
+}
+
+.card-primary:not(.card-outline)>.card-header {
+    background-color: #3c5a7a !important;
+}
+
+.btn-primary {
+    background-color: #1f4e7d !important;
+    border-color: #1f4e7d !important;
+}
+
+.btn-primary:hover {
+    background-color: #112b46 !important;
+    border-color: #112b46 !important;
+}
+
+.card {
+    background-color: #ebebeb !important;
+}
+
+footer.main-footer {
+    background: #151f28 !important;
+    margin-bottom: -5px;
+}
+
+.main-footer {
+    position: initial !important;
+}
+
+.sub-menu {
+    display: none !important;
+}
+
+.sub-menu.visible {
+    display: block !important;
+}
+
+.select2-container--default .select2-selection--single {
+    height: auto !important;
+}
+
+.label {
+    text-shadow: none !important;
+    font-size: 14px;
+    font-weight: 300;
+    padding: 3px 6px;
+    color: #fff;
+}
+
+.label-danger {
+    background-color: #ed6b75;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+span.brand-text.font-weight-light {
+    font-size: 15px;
+    font-weight: 800 !important;
+}
+.margin-top-20 {
+    margin-top: 20px;
+}
+.margin-bottom-20 {
+    margin-bottom: 20px;
+}
+
+/* #region modal*/
+.modal-header {
+    background: #151f28 !important;
+    color: #ffffff !important;
+}
+
+.modal-title {
+    margin: 0px auto;
+}
+
+.modal-header .close,
+.modal-header .mailbox-attachment-close {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.assigntask-modal .modal-body {
+    height: 300px;
+}
+
+.modal.assigntask-modal {
+    z-index: 1051 !important;
+}
+
+/* #endregion  modal */
+
+/* #region assign task modal*/
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    color: #000000 !important;
+}
+.task-project-info label, .task-project-info span {
+    font-size: 16px !important;
+}
+
+/* #endregion  assign task modal */
+
+/* #region login register */
+.register-box {
+    width: 550px !important;
+}
+
+.login-box-msg,
+.register-box-msg {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* #endregion login register */
+
+/* #region assigned-task */
+.assigned-task table.table-bordered.dataTable tbody th, .assigned-task table.table-bordered.dataTable tbody td {
+    border-bottom-width: 1px !important;
+    vertical-align: middle;
+}
+/* #endregion assigned-task */
+
+/* mobile-css */
+@media screen and (min-width: 320px) and (max-width: 767px) {}
+
+/* tab-css */
+@media screen and (min-width: 768px) and (max-width: 1024px) {}
+
+/* laptop-css */
+@media screen and (min-width: 1025px) {}
