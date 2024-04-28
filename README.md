@@ -1,5 +1,4 @@
 # Leave-Management-System
-This task from Business Automation Ltd.
 
 ## Description
 - Laravel version 10
