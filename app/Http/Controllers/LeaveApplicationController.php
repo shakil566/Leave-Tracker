@@ -14,8 +14,10 @@ use Helper;
 use Validator;
 use Response;
 use Session;
-use App\Models\Task;
 use App\Models\User;
+use App\Jobs\SendEmailJob;
+use App\Mail\SendMail;
+use Illuminate\Support\Facades\Mail;
 
 class LeaveApplicationController extends Controller
 {
@@ -51,6 +53,14 @@ class LeaveApplicationController extends Controller
             $employee = User::orderBy('id')->where('status', '=', 1)->where('user_group_id', '2')->pluck('name', 'id')->toArray();
             $employee = array('' => '--Select Employee--') + $employee;
         }
+
+
+        // $subject = 'Verification OTP';
+        // $body = 'Your OTP is ' . $otp;
+        // $userName = 'User';
+         // Mail::to($mailAddress)->send(new SendMail($subject, $body, $userName));
+                            // $mailResponse = dispatch(new SendEmailJob($mailInfo));
+                            // dd($mailResponse);
 
         return view('admin.leaveApplication.create')->with(compact('category', 'employee'));
     }
