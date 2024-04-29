@@ -29,7 +29,7 @@ class SendMail extends Mailable
     {
 
         $subject = $this->subject;
-        $logo = 'http://localhost:8080/pms/public/img/logo.png';
+        $logo = '';
 
         return $this->subject($subject)
             ->view('emails.mailTemplate')

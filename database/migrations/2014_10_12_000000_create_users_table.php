@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_group_id')->default(1);
+            $table->foreignId('user_group_id')->default(2);
             $table->string('name');
             $table->string('employee_id')->nullable();
             $table->string('email')->unique();
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('status', ['1', '2'])->default('1')->comment('1 = Active, 2 = Inactive');
+            $table->enum('status', ['1', '2'])->default('2')->comment('1 = Active, 2 = Inactive');
             $table->rememberToken();
             $table->timestamps();
             $table->foreignId('created_by')->nullable();

@@ -7,17 +7,14 @@
     <meta name="viewport" content="width=device-width" />
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>{{ trans('label.CSTI_FULL') }}</title>
-    {{-- {{ HTML::style('public/css/email.css'); }} --}}
+    <title>{{ trans('english.PROJECT_TITLE') }}</title>
 
 </head>
 
 <body bgcolor="#FFFFFF">
-    <?php
-    $data = Input::all();
-    ?>
+    
     <!--HEADER-->
-    <table class="head-wrap" bgcolor="#999999">
+    <!-- <table class="head-wrap" bgcolor="#999999">
         <tr>
             <td></td>
             <td class="header container">
@@ -26,11 +23,11 @@
                     <table bgcolor="#999999" style="width: 100%;">
                         <tr>
                             <td style="width:80%;">
-                                <img src="{{ URL::to('/') }}/public/img/logo.png" alt="{{ trans('label.CSTI_FULL') }}"
+                                <img src="{{ URL::to('/') }}/public/backend/dist/img/AdminLogo.pngp" alt="{{ trans('english.PROJECT_TITLE') }}"
                                     class="logo-default" /> </a>
                             </td>
                             <td align="right" style="width:20%;">
-                                <h6 class="collapse">{{ trans('label.CSTI_FULL') }}</h6>
+                                <h6 class="collapse">{{ trans('english.PROJECT_TITLE') }}</h6>
                             </td>
                         </tr>
 
@@ -40,7 +37,7 @@
             </td>
             <td></td>
         </tr>
-    </table>
+    </table> -->
 
     <!-- BODY -->
     <table class="body-wrap">
@@ -54,10 +51,7 @@
                             <td>
                                 <h3>Dear {{ $userName ?? '' }},</h3>
                                 <p class="lead">{{ $body ?? '' }}</p>
-                                <!-- Callout Panel -->
-                                <p class="callout">
-                                    {{-- {{trans('label.MAIL_FOOTER_MESSAGE')}} --}}
-                                </p><!-- /Callout Panel -->
+                               
                             </td>
                         </tr>
                     </table>
@@ -80,8 +74,7 @@
                         <tr>
                             <td align="center">
                                 <p>
-                                    Copyright © <?php echo date('Y'); ?> @lang('label.CSTI_FULL') | Powered By <a
-                                        href="http://www.swapnoloke.com/">@lang('label.SWAPNOLOKE')</a>
+                                    Copyright © <?php echo date('Y'); ?> @lang('english.PROJECT_TITLE')
                                 </p>
                             </td>
                         </tr>

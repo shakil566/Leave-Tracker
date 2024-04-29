@@ -54,14 +54,6 @@ class LeaveApplicationController extends Controller
             $employee = array('' => '--Select Employee--') + $employee;
         }
 
-
-        // $subject = 'Verification OTP';
-        // $body = 'Your OTP is ' . $otp;
-        // $userName = 'User';
-         // Mail::to($mailAddress)->send(new SendMail($subject, $body, $userName));
-                            // $mailResponse = dispatch(new SendEmailJob($mailInfo));
-                            // dd($mailResponse);
-
         return view('admin.leaveApplication.create')->with(compact('category', 'employee'));
     }
 
@@ -118,6 +110,22 @@ class LeaveApplicationController extends Controller
         $task->description =  $request->description;
         $task->status =  1;
         if ($task->save()) {
+            if (Auth::user()->user_group_id != 1) {
+                $subject = 'Leave Application';
+                $body = 'Your Leave Application  (' . $request->title .')  Submitted Succesfully. We will notify you for further proccess. Thank You';
+                $userName = Auth::user()->name ?? 'User';
+                $mailAddress = Auth::user()->email ?? 'example@gmail.com';
+
+                $mailInfo = [
+                    'mailTo' => $mailAddress,
+                    'subject' => $subject,
+                    'body' =>  $body,
+                    'userName' => $userName,
+                ];
+
+                // $mailResponse = Mail::to($mailAddress)->send(new SendMail($subject, $body, $userName));
+                $mailResponse = dispatch(new SendEmailJob($mailInfo));
+            }
             Session::flash('success',  trans('english.LEAVE_APPLICATION') . trans('english.HAS_BEEN_CREATED_SUCCESSFULLY'));
             return Redirect::to('admin/leaveApplication');
         } else {
@@ -247,7 +255,7 @@ class LeaveApplicationController extends Controller
     {
         $leaveId = $request->leave_id;
         $data = LeaveManagement::find($leaveId);
-        $view = view('admin.leaveApplication.remarks', compact('leaveId','data'))->render();
+        $view = view('admin.leaveApplication.remarks', compact('leaveId', 'data'))->render();
         return response()->json(['html' => $view]);
     }
     public function saveRemarks(Request $request)
@@ -266,8 +274,29 @@ class LeaveApplicationController extends Controller
 
         $data->status = $request->status;
         $data->remarks = $request->remarks;
+        $userInfo = LeaveManagement::with(array('User'))->where('id', $request->leave_id)->first();
 
         if ($data->save()) {
+            if (!empty($userInfo)) {
+                $subject = 'Leave Application Feedback';
+                if ($request->status == 2) {
+                    $body = 'Your Leave Application ('. $userInfo->title .') is Approved. Remarks: ' . $request->remarks . ' .Thank You';
+                } else if ($request->status == 3) {
+                    $body = 'Your Leave Application ('. $userInfo->title .') is Rejected. Remarks: ' . $request->remarks . ' .Thank You';
+                }
+                $userName = $userInfo->User->name ?? 'User';
+                $mailAddress = $userInfo->User->email ?? 'example@gmail.com';
+
+                $mailInfo = [
+                    'mailTo' => $mailAddress,
+                    'subject' => $subject,
+                    'body' =>  $body,
+                    'userName' => $userName,
+                ];
+
+                // $mailResponse = Mail::to($mailAddress)->send(new SendMail($subject, $body, $userName));
+                $mailResponse = dispatch(new SendEmailJob($mailInfo));
+            }
             return Response::json(['success' => true, 'message' => 'Successfully Leave Application Modify'], 200);
         } else {
             return Response::json(['success' => false, 'message' => 'Something Wrong'], 401);

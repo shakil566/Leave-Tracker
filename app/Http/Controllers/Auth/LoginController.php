@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -19,7 +22,21 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+        ]);
 
+        // Get the user details from database and check if email is verified.
+        $user = User::where('email', $request->input($this->username()))->first();
+        if (!empty($user)) {
+            if ($user->status == '2') {
+                throw ValidationException::withMessages([$this->username() => __('english.FAILED_TO_LOGIN_USER_INACTIVE')]);
+            }
+        }
+    }
     /**
      * Where to redirect users after login.
      *

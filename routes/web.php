@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LeaveApplicationController;
 use App\Http\Controllers\LeaveCategoryController;
 use App\Http\Controllers\UserGroupController;
@@ -31,7 +32,14 @@ Route::group(['middleware' => ['auth']], function () {
     // :::::::: End User Route ::::::::::::::
 
 
-    
+    // :::::::: Start Employee Route ::::::::::::::
+
+    Route::resource('admin/employees', EmployeeController::class, ['except' => ['show']]);
+    Route::get('admin/employees/activate/{id}/{param?}', [EmployeeController::class, 'active']);
+
+    // :::::::: End Employee Route ::::::::::::::
+
+
     // UserGroupController all routes
     Route::post('admin/userGroup/filter/', [UserGroupController::class, 'filter']);
     Route::get('admin/userGroup', [UserGroupController::class, 'index'])->name('userGroup.index');
@@ -58,14 +66,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::patch('admin/leaveApplication/{id}', [LeaveApplicationController::class, 'update'])->name('leaveApplication.update');
     Route::delete('admin/leaveApplication/{id}', [LeaveApplicationController::class, 'destroy'])->name('leaveApplication.destroy');
     Route::post('admin/leaveApplication/filter/', [LeaveApplicationController::class, 'filter']);
-    
+
     Route::get('admin/leaveApplication/approve/{id}/{param?}', [LeaveApplicationController::class, 'approve']);
     Route::get('admin/leaveApplication/reject/{id}/{param?}', [LeaveApplicationController::class, 'reject']);
     Route::post('admin/leaveApplication/remarks', [LeaveApplicationController::class, 'remarks']);
     Route::post('admin/leaveApplication/saveRemarks', [LeaveApplicationController::class, 'saveRemarks']);
-
 });
 
-Route::get('/{pathMatch}', function(){
+Route::get('/{pathMatch}', function () {
     return redirect('/login');
 })->where('pathMatch', ".*");

@@ -139,6 +139,9 @@ return [
     'REASON' => 'Reason',
     'START_DATE' => 'Start Date',
     'END_DATE' => 'End Date',
+    'FAILED_TO_LOGIN_USER_INACTIVE' => 'Failed To Login User Inactive! Please Contact With Admin.',
+    '' => '',
+    '' => '',
     '' => '',
 
 ];
